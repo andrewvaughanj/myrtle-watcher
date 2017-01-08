@@ -18,7 +18,7 @@
 USER="pi"
 
 ## Absolute path to the script 
-SCRIPT="/home/pi/mytrle-watcher/run_scrape.sh"
+SCRIPT="/home/pi/myrtle-watcher/run_scrape.sh"
 
 ## Absolute path to the screen binary.
 SCREEN="/usr/bin/screen"

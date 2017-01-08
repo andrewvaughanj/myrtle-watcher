@@ -3,6 +3,6 @@ server {
 
     location / {
         include uwsgi_params;
-        uwsgi_pass unix:/home/pi/mytrle-watcher/mytrle.sock;
+        uwsgi_pass unix:/home/pi/myrtle-watcher/myrtle.sock;
     }
 }

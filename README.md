@@ -1,6 +1,6 @@
-# mytrle-watcher
+# myrtle-watcher
 
-Keeping an eye on the mytrle.
+Keeping an eye on the myrtle.
 
 ### Dependencies
 * Python v2.7.9
