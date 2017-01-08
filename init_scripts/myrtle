@@ -18,7 +18,7 @@
 USER="pi"
 
 ## Absolute path to the script 
-SCRIPT="/home/pi/bunny-watcher/run_mytrle.sh"
+SCRIPT="/home/pi/mytrle-watcher/run_mytrle.sh"
 
 ## Absolute path to the screen binary.
 SCREEN="/usr/bin/screen"

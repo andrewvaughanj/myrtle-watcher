@@ -2,5 +2,5 @@
 
 sudo uvcdynctrl -s 'LED1 Mode' 0
 
-cd /home/pi/bunny-watcher
+cd /home/pi/mytrle-watcher
 python ./sense.py

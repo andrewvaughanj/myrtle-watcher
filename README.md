@@ -1,4 +1,4 @@
-# bunny-watcher
+# mytrle-watcher
 
 Keeping an eye on the mytrle.
 
