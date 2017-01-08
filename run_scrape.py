@@ -3,4 +3,4 @@
 sudo uvcdynctrl -s 'LED1 Mode' 0
 
 cd /home/pi/mytrle-watcher
-python ./sense.py
+python ./scrape.py

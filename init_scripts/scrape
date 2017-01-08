@@ -1,15 +1,15 @@
 #!/bin/bash
 ### BEGIN INIT INFO
-# Provides:          sense 
+# Provides:          scrape 
 # Required-Start:    $local_fs $remote_fs $network $syslog
 # Required-Stop:     $local_fs $remote_fs $network $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start/stop sense daemon
+# Short-Description: Start/stop scrape daemon
 ### END INIT INFO
 
 # ------------------------------------------------------------------------------
-# /etc/init.d/sense
+# /etc/init.d/scrape
 #
 # http://raspberrypi.stackexchange.com/questions/8734/execute-script-on-start-up/8735#8735
 # ------------------------------------------------------------------------------
@@ -18,20 +18,20 @@
 USER="pi"
 
 ## Absolute path to the script 
-SCRIPT="/home/pi/mytrle-watcher/run_sense.sh"
+SCRIPT="/home/pi/mytrle-watcher/run_scrape.sh"
 
 ## Absolute path to the screen binary.
 SCREEN="/usr/bin/screen"
 
 ## Name of the screen session, you can then "screen -r $SCREEN_NAME" to get it back
 ## to the forground and work with it on your shell.
-SCREEN_NAME="sense"
+SCREEN_NAME="scrape"
 
 ## Absolute path to the scripts's PID file.
-PIDFILE="/tmp/sense"
+PIDFILE="/tmp/scrape"
 
 ## Absolute path to scripts's XMLRPC socket.
-SOCKET="/tmp/sense.socket"
+SOCKET="/tmp/scrape.socket"
 
 ## Check if the socket exists and if it exists delete it.
 delete_socket() {
@@ -43,7 +43,7 @@ delete_socket() {
 case "$1" in
     ## Start script in the background.
     start)
-        echo "Starting sense"
+        echo "Starting scrape"
         delete_socket
         echo start-stop-daemon --start --background --oknodo \
             --pidfile "$PIDFILE" --make-pidfile \
@@ -54,22 +54,22 @@ case "$1" in
             --chuid $USER \
             --exec $SCREEN -- -DmUS $SCREEN_NAME $SCRIPT
         if [[ $? -ne 0 ]]; then
-            echo "Error: sense failed to start."
+            echo "Error: scrape failed to start."
             exit 1
         fi
-        echo "sense started successfully."
+        echo "scrape started successfully."
         ;;
 
     ## Stop script 
     stop)
-        echo "Stopping sense"
+        echo "Stopping scrape"
         start-stop-daemon --stop --oknodo --pidfile "$PIDFILE"
         if [[ $? -ne 0 ]]; then
-            echo "Error: failed to stop sense process."
+            echo "Error: failed to stop scrape process."
             exit 1
         fi
         delete_socket
-        echo "sense stopped successfully."
+        echo "scrape stopped successfully."
         ;;
 
     ## Restart script 
