@@ -8,7 +8,7 @@ CAPTURES_DIR = MYRTLE_WATCHER_DIR + "/static/captures"
 
 try:
 
-    # Create .gif for Mytrle Watcher
+    # Create .gif for Myrtle Watcher
     os.system("ffmpeg -y -framerate 10 -pattern_type glob -i '{}/2*.jpg' -pix_fmt rgb8 -ignore_loop 0 -s 576x384 {}/animated.gif".format(CAPTURES_DIR, CAPTURES_DIR))
 
     # Create .mp4 for YouTube
@@ -16,7 +16,7 @@ try:
 
     # YouTube details
     filename = "animated.mp4"
-    desc = "Mytrle Watcher"
+    desc = "Myrtle Watcher"
     category = "15"   # Pets & Animals YouTube category ID
     title = (datetime.date.today() - datetime.timedelta(1)
              ).strftime('%A %-e %B %Y')  # Yesterday's date
