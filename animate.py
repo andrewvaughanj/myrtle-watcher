@@ -3,8 +3,8 @@
 import os
 import datetime
 
-BUNNY_WATCHER_DIR = "/home/pi/mytrle-watcher"
-CAPTURES_DIR = BUNNY_WATCHER_DIR + "/static/captures"
+MYRTLE_WATCHER_DIR = "/home/pi/mytrle-watcher"
+CAPTURES_DIR = MYRTLE_WATCHER_DIR + "/static/captures"
 
 try:
 
@@ -23,7 +23,7 @@ try:
 
     # Upload to YouTube
     os.system("python {}/upload_video.py --noauth_local_webserver --file='{}/{}' --title='{}' --description='{}' --category={}".format(
-        BUNNY_WATCHER_DIR, CAPTURES_DIR, filename, title, desc, category))
+        MYRTLE_WATCHER_DIR, CAPTURES_DIR, filename, title, desc, category))
 
 except KeyboardInterrupt:
     print "Quitting ..."
