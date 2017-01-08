@@ -3,7 +3,7 @@
 import os
 import datetime
 
-MYRTLE_WATCHER_DIR = "${HOME}/myrtle-watcher"
+MYRTLE_WATCHER_DIR = os.path.expandvars("${HOME}/myrtle-watcher")
 CAPTURES_DIR = MYRTLE_WATCHER_DIR + "/static/captures"
 
 try:
