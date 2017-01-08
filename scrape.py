@@ -6,7 +6,7 @@ import requests
 
 CAPTURES_DIR = "static/captures/"
 CURRENT_CAPTURE = CAPTURES_DIR + "current.jpg"
-INTERVAL = 5
+INTERVAL = 60
 
 
 def get_image():
@@ -46,9 +46,6 @@ if __name__ == "__main__":
                     curr_img.write(camera_capture)
 
                 shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
-
-            else:
-                print "Failure!"
 
             # Delete if any images older than a day
             for fn in sorted(os.listdir(CAPTURES_DIR)):
