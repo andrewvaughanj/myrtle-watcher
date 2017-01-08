@@ -3,6 +3,6 @@ server {
 
     location / {
         include uwsgi_params;
-        uwsgi_pass unix:/home/pi/bunny-watcher/bunnies.sock;
+        uwsgi_pass unix:/home/pi/bunny-watcher/mytrle.sock;
     }
 }

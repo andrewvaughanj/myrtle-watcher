@@ -1,15 +1,15 @@
 #!/bin/bash
 ### BEGIN INIT INFO
-# Provides:          bunnies 
+# Provides:          mytrle 
 # Required-Start:    $local_fs $remote_fs $network $syslog
 # Required-Stop:     $local_fs $remote_fs $network $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start/stop bunnies daemon
+# Short-Description: Start/stop mytrle daemon
 ### END INIT INFO
 
 # ------------------------------------------------------------------------------
-# /etc/init.d/bunnies
+# /etc/init.d/mytrle
 #
 # http://raspberrypi.stackexchange.com/questions/8734/execute-script-on-start-up/8735#8735
 # ------------------------------------------------------------------------------
@@ -18,20 +18,20 @@
 USER="pi"
 
 ## Absolute path to the script 
-SCRIPT="/home/pi/bunny-watcher/run_bunnies.sh"
+SCRIPT="/home/pi/bunny-watcher/run_mytrle.sh"
 
 ## Absolute path to the screen binary.
 SCREEN="/usr/bin/screen"
 
 ## Name of the screen session, you can then "screen -r $SCREEN_NAME" to get it back
 ## to the forground and work with it on your shell.
-SCREEN_NAME="bunnies"
+SCREEN_NAME="mytrle"
 
 ## Absolute path to the scripts's PID file.
-PIDFILE="/tmp/bunnies"
+PIDFILE="/tmp/mytrle"
 
 ## Absolute path to scripts's XMLRPC socket.
-SOCKET="/tmp/bunnies.socket"
+SOCKET="/tmp/mytrle.socket"
 
 ## Check if the socket exists and if it exists delete it.
 delete_socket() {
@@ -43,7 +43,7 @@ delete_socket() {
 case "$1" in
     ## Start script in the background.
     start)
-        echo "Starting bunnies"
+        echo "Starting mytrle"
         delete_socket
         echo start-stop-daemon --start --background --oknodo \
             --pidfile "$PIDFILE" --make-pidfile \
@@ -54,22 +54,22 @@ case "$1" in
             --chuid $USER \
             --exec $SCREEN -- -DmUS $SCREEN_NAME $SCRIPT
         if [[ $? -ne 0 ]]; then
-            echo "Error: bunnies failed to start."
+            echo "Error: mytrle failed to start."
             exit 1
         fi
-        echo "bunnies started successfully."
+        echo "mytrle started successfully."
         ;;
 
     ## Stop script 
     stop)
-        echo "Stopping bunnies"
+        echo "Stopping mytrle"
         start-stop-daemon --stop --oknodo --pidfile "$PIDFILE"
         if [[ $? -ne 0 ]]; then
-            echo "Error: failed to stop bunnies process."
+            echo "Error: failed to stop mytrle process."
             exit 1
         fi
         delete_socket
-        echo "bunnies stopped successfully."
+        echo "mytrle stopped successfully."
         ;;
 
     ## Restart script 

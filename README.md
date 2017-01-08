@@ -1,6 +1,6 @@
 # bunny-watcher
 
-Keeping an eye on the bunnies.
+Keeping an eye on the mytrle.
 
 ### Dependencies
 * Python v2.7.9

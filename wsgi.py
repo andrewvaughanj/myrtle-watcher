@@ -1,4 +1,4 @@
-from bunnies import application
+from mytrle import application
 
 if __name__ == "__main__":
     application.run()
