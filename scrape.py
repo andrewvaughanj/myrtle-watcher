@@ -3,19 +3,21 @@
 import os
 import time
 import requests
+import datetime
+import shutil
 
-CAPTURES_DIR = "static/captures/"
-CURRENT_CAPTURE = CAPTURES_DIR + "current.jpg"
-INTERVAL = 60
+CAPTURES_DIR = "static/captures"
+CURRENT_CAPTURE = os.path.join(CAPTURES_DIR, "current.jpg")
+INTERVAL = 30
 
 
 def get_image():
-    ROOM = 5  # TODO, THIS NEEDS CHANGING!
+    ROOM = 4  # TODO, THIS NEEDS CHANGING!
     HOST = ""
     PORT = "2{ROOM:02d}1".format(ROOM=ROOM)
     PATH = "Streaming/channels/1/picture?snapShotImageType=JPEG"
-    USER = "cat"
-    PASS = "cam"
+    USER = ""
+    PASS = ""
     url = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
         USER=USER, PASS=PASS, HOST=HOST, PORT=PORT, PATH=PATH)
     response = requests.get(url)
@@ -40,12 +42,16 @@ if __name__ == "__main__":
 
                 # Use the current time as the filename
                 curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
-                curr_img_path = os.path.join(CAPTURES_DIR, curr_time, ".jpg")
+                curr_img_path = os.path.join(CAPTURES_DIR, curr_time + ".jpg")
 
-                with open(curr_img_path) as curr_img:
+                with open(curr_img_path, "w") as curr_img:
                     curr_img.write(camera_capture)
 
                 shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
+
+            else:
+                curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
+                print "Failed: " + curr_time
 
             # Delete if any images older than a day
             for fn in sorted(os.listdir(CAPTURES_DIR)):
