@@ -5,22 +5,24 @@ import time
 import requests
 import datetime
 import shutil
+import yaml
 
 CAPTURES_DIR = "static/captures"
 CURRENT_CAPTURE = os.path.join(CAPTURES_DIR, "current.jpg")
 INTERVAL = 30
-
+document = open("config.yml").read()
+config = (yaml.load(document))
+ROOM = config["ROOM"]
+HOST = config["HOST"]
+PATH = config["PATH"]
+USER = config["USER"]
+PASS = config["PASS"]
+PORT = "2{ROOM:02d}1".format(ROOM=ROOM)
+URL = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
+    USER=USER, PASS=PASS, HOST=HOST, PORT=PORT, PATH=PATH)
 
 def get_image():
-    ROOM = 4  # TODO, THIS NEEDS CHANGING!
-    HOST = ""
-    PORT = "2{ROOM:02d}1".format(ROOM=ROOM)
-    PATH = "Streaming/channels/1/picture?snapShotImageType=JPEG"
-    USER = ""
-    PASS = ""
-    url = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
-        USER=USER, PASS=PASS, HOST=HOST, PORT=PORT, PATH=PATH)
-    response = requests.get(url)
+    response = requests.get(URL)
     if response.status_code == 200:
         return True, response.content
 
