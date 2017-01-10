@@ -21,6 +21,7 @@ PORT = "2{ROOM:02d}1".format(ROOM=ROOM)
 URL = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
     USER=USER, PASS=PASS, HOST=HOST, PORT=PORT, PATH=PATH)
 
+
 def get_image():
     response = requests.get(URL)
     if response.status_code == 200:
