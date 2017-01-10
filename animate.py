@@ -2,6 +2,7 @@
 
 import os
 import datetime
+import shutil
 
 MYRTLE_WATCHER_DIR = os.path.expandvars("${HOME}/myrtle-watcher")
 CAPTURES_DIR = MYRTLE_WATCHER_DIR + "/static/captures"
@@ -18,6 +19,7 @@ try:
     # Create .mp4 for YouTube
     os.system("ffmpeg -y -framerate 10 -pattern_type glob -i '{}/2*.jpg' -vcodec mpeg4 -q:v 10 {}/animated.mp4".format(CAPTURES_DIR, CAPTURES_DIR))
 
+    # Copy the mp4 to the back-up location
     curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
     curr_mp4_path = os.path.join(VIDEOS_DIR, curr_time, ".mp4")
     shutil.copyfile(curr_mp4_path, CURRENT_CAPTURE)
