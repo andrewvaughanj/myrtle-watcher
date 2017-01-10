@@ -21,6 +21,8 @@ def show_capture():
     # remove "current" and "animated"
     images.remove("current.jpg")
     images.remove("animated.mp4")
+    # and now remove whatever is currently showing!
+    images = images[1:]
 
     videos = sorted(os.listdir('static/videos/'), reverse=True)
 
