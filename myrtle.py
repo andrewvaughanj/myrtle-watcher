@@ -21,7 +21,7 @@ def show_capture():
     images = images[4:]
 
     videos = sorted(os.listdir('static/videos/'), reverse=True)
-    videos = videos[4:]
+    videos = videos
 
     return render_template('main.html', images=images, videos=videos)
 
