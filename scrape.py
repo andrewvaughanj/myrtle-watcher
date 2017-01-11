@@ -6,6 +6,7 @@ import requests
 import datetime
 import shutil
 import yaml
+import traceback
 
 CAPTURES_DIR = "static/captures"
 CURRENT_CAPTURE = os.path.join(CAPTURES_DIR, "current.jpg")
@@ -23,9 +24,14 @@ URL = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
 
 
 def get_image():
-    response = requests.get(URL)
-    if response.status_code == 200:
-        return True, response.content
+    try:
+        response = requests.get(URL)
+        if response.status_code == 200:
+            return True, response.content
+    except:
+        print "HTTP Failure ..."
+        traceback.print_exc()
+        return False, None
 
     return False, None
 
@@ -43,14 +49,19 @@ if __name__ == "__main__":
 
             if result:
 
-                # Use the current time as the filename
-                curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
-                curr_img_path = os.path.join(CAPTURES_DIR, curr_time + ".jpg")
+                try:
+                    # Use the current time as the filename
+                    curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
+                    curr_img_path = os.path.join(
+                        CAPTURES_DIR, curr_time + ".jpg")
 
-                with open(curr_img_path, "w") as curr_img:
-                    curr_img.write(camera_capture)
+                    with open(curr_img_path, "w") as curr_img:
+                        curr_img.write(camera_capture)
 
-                shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
+                    shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
+                except:
+                    print "File failure ..."
+                    traceback.print_exc()
 
             else:
                 curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
@@ -68,7 +79,11 @@ if __name__ == "__main__":
                 else:
                     break
 
-            time.sleep(INTERVAL)
+            try:
+                time.sleep(INTERVAL)
+            except:
+                print "Sleep failure ..."
+                traceback.print_exc()
 
     except KeyboardInterrupt:
         print "\nQuitting ..."
