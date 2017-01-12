@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ${HOME}/myrtle-watcher
+
 rm -rf "static/temp"
 mkdir "static/temp"
 cd "static/temp"
