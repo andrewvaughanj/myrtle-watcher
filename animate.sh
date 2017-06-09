@@ -23,4 +23,3 @@ cd ../..
 
 /home/pi/myrtle-watcher/animate.py
 
-rm -rf "static/temp"
