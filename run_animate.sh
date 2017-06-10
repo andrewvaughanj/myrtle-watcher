@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source ${HOME}/.bashrc
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+export LD_LIBRARY_PATH=/usr/local/lib
+
 cd ${HOME}/myrtle-watcher
 
 rm -rf "static/temp"
@@ -21,5 +25,8 @@ do
     done
 cd ../..
 
-/home/pi/myrtle-watcher/animate.py
+/home/pi/myrtle-watcher/animate.py |& cat > upload.log
+
+cat upload.log
+
 
