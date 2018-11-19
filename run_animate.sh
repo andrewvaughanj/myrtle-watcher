@@ -4,7 +4,7 @@ source ${HOME}/.bashrc
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
 export LD_LIBRARY_PATH=/usr/local/lib
 
-cd ${HOME}/myrtle-watcher
+cd ${HOME}/pomona-watcher
 
 rm -rf "static/temp"
 mkdir "static/temp"
@@ -25,7 +25,7 @@ do
     done
 cd ../..
 
-/home/pi/myrtle-watcher/animate.py |& cat > upload.log
+/home/pi/pomona-watcher/animate.py |& cat > upload.log
 
 cat upload.log
 

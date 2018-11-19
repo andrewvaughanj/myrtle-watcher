@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd ${HOME}/myrtle-watcher
+cd ${HOME}/pomona-watcher
 python ./scrape.py

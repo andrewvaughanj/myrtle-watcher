@@ -1,6 +1,6 @@
-# myrtle-watcher
+# pomona-watcher
 
-Keeping an eye on the myrtle.
+Keeping an eye on the pomona.
 
 ### Dependencies
 * Python v2.7.9

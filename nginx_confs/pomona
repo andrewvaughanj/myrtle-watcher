@@ -3,6 +3,6 @@ server {
 
     location / {
         include uwsgi_params;
-        uwsgi_pass unix:/home/pi/myrtle-watcher/myrtle.sock;
+        uwsgi_pass unix:/home/pi/pomona-watcher/pomona.sock;
     }
 }
