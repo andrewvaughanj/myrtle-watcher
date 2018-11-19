@@ -25,7 +25,7 @@ do
     done
 cd ../..
 
-/home/pi/pomona-watcher/animate.py |& cat > upload.log
+/home/avj/pomona-watcher/animate.py |& cat > upload.log
 
 cat upload.log
 

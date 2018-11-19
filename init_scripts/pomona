@@ -18,7 +18,7 @@
 USER="pi"
 
 ## Absolute path to the script 
-SCRIPT="/home/pi/pomona-watcher/run_pomona.sh"
+SCRIPT="/home/avj/pomona-watcher/run_pomona.sh"
 
 ## Absolute path to the screen binary.
 SCREEN="/usr/bin/screen"
