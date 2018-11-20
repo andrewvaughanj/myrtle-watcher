@@ -1,5 +1,8 @@
 #!/bin/bash
 
-env PATH=${HOME}/pomona-watcher/pomona-watcherenv/bin
-cd ${HOME}/pomona-watcher
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $SCRIPT_DIR
+
 exec uwsgi --ini pomona.ini
+
+# EOF

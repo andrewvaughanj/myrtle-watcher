@@ -1,0 +1,13 @@
+[Unit]
+Description=Scrape launcher
+After=network.target
+
+[Service]
+User=avj
+Type=forking
+Restart=on-failure
+RestartSec=3
+ExecStart=/usr/bin/bash -c '/usr/bin/screen -L -dmUS scrape /bin/bash /home/avj/pomona-watcher/run_scrape.sh'
+
+[Install]
+WantedBy=multi-user.target

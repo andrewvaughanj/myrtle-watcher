@@ -1,4 +1,8 @@
 #!/bin/bash
 
-cd ${HOME}/pomona-watcher
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $SCRIPT_DIR
+
 python ./scrape.py
+
+# EOF
