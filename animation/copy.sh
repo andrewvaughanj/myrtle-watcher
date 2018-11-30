@@ -4,10 +4,9 @@ set -e
 set -u
 
 mkdir empty_dir
-rsync -a --delete empty_dir thermcam
-rsync -a --delete empty_dir webcam
-rm -rf thermcam webcam empty_dir
-mkdir thermcam webcam
+rsync -a --delete empty_dir montage
+rm -rf empty_dir montage
+mkdir montage
 
 base="*.jpg"
 
