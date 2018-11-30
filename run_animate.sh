@@ -1,32 +1,15 @@
 #!/bin/bash
 
 source ${HOME}/.bashrc
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+export PATH=/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/avj/.local/bin:/home/avj/bin
 export LD_LIBRARY_PATH=/usr/local/lib
 
-cd ${HOME}/pomona-watcher
+cd ${HOME}/pomona-watcher/animation
 
-rm -rf "static/temp"
-mkdir "static/temp"
-cd "static/temp"
-for f in `ls -rt ../captures/2*.jpg`
-do
-    # get the index in 0000 format
-    printf -v counts "%04d" $count
+rm -f animate.log
 
-    # check if the file exists
-    if [ -s "$f" ]
-    then
-        # if it does, copy it and link it
-        cp $f "frame_$counts.jpg"
-        # increment counter
-        count=`expr $count + 1`
-    fi
-    done
-cd ../..
+./run.sh |& cat > animate.log
 
-/home/avj/pomona-watcher/animate.py |& cat > upload.log
+cat animate.log
 
-cat upload.log
-
-
+# EOF
