@@ -18,7 +18,13 @@ HOST = config["HOST"]
 PATH = config["PATH"]
 USER = config["USER"]
 PASS = config["PASS"]
-PORT = "2{ROOM:02d}1".format(ROOM=ROOM)
+
+#
+# The port number previously ended with a 1 -- the latest cat-cam details have
+# this ending with a 4
+#
+PORT = "2{ROOM:02d}4".format(ROOM=ROOM)
+
 URL = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
     USER=USER, PASS=PASS, HOST=HOST, PORT=PORT, PATH=PATH)
 
