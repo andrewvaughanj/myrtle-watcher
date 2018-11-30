@@ -9,7 +9,7 @@ import yaml
 import traceback
 
 CAPTURES_DIR = "static/captures"
-CURRENT_CAPTURE = os.path.join(CAPTURES_DIR, "current.jpg")
+# CURRENT_CAPTURE = os.path.join(CAPTURES_DIR, "current.jpg")
 INTERVAL = 10
 document = open("config.yml").read()
 config = (yaml.load(document))
@@ -62,7 +62,7 @@ if __name__ == "__main__":
                     with open(curr_img_path, "w") as curr_img:
                         curr_img.write(camera_capture)
 
-                    shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
+                    # shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
                     print "Success: {:s}".format(curr_time)
                 except:
                     print "File failure ..."
