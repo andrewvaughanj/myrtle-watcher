@@ -19,8 +19,16 @@ def show_capture():
     # Get a list of the captures that doesn't include the current captures
     images = sorted(os.listdir('static/captures/'), reverse=True)
     # remove "current" and "animated"
-    images.remove("current.jpg")
-    images.remove("animated.mp4")
+    try:
+        images.remove("current.jpg")
+    except:
+        pass
+
+    try:
+        images.remove("animated.mp4")
+    except:
+        pass
+
     # and now remove whatever is currently showing!
     current = images[0]
     images = images[1:]

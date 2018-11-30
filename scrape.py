@@ -10,7 +10,7 @@ import traceback
 
 CAPTURES_DIR = "static/captures"
 CURRENT_CAPTURE = os.path.join(CAPTURES_DIR, "current.jpg")
-INTERVAL = 30
+INTERVAL = 10
 document = open("config.yml").read()
 config = (yaml.load(document))
 ROOM = config["ROOM"]
@@ -19,11 +19,7 @@ PATH = config["PATH"]
 USER = config["USER"]
 PASS = config["PASS"]
 
-#
-# The port number previously ended with a 1 -- the latest cat-cam details have
-# this ending with a 4
-#
-PORT = "2{ROOM:02d}4".format(ROOM=ROOM)
+PORT = "2{ROOM:02d}1".format(ROOM=ROOM)
 
 URL = "http://{USER}:{PASS}@{HOST}:{PORT}/{PATH}".format(
     USER=USER, PASS=PASS, HOST=HOST, PORT=PORT, PATH=PATH)
@@ -51,13 +47,15 @@ if __name__ == "__main__":
     try:
         while 1:
             # Grab the image
+            time_now = datetime.datetime.now()
+            curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
+
             result, camera_capture = get_image()
 
             if result:
 
                 try:
                     # Use the current time as the filename
-                    curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
                     curr_img_path = os.path.join(
                         CAPTURES_DIR, curr_time + ".jpg")
 
@@ -65,12 +63,12 @@ if __name__ == "__main__":
                         curr_img.write(camera_capture)
 
                     shutil.copyfile(curr_img_path, CURRENT_CAPTURE)
+                    print "Success: {:s}".format(curr_time)
                 except:
                     print "File failure ..."
                     traceback.print_exc()
 
             else:
-                curr_time = datetime.datetime.now().isoformat().replace(".", "_").replace(":", "_")
                 print "Failed: " + curr_time
 
             # Delete if any images older than a day
@@ -86,7 +84,14 @@ if __name__ == "__main__":
                     break
 
             try:
-                time.sleep(INTERVAL)
+                end = datetime.datetime.now()
+                elapsed = end - time_now
+
+                interval = datetime.timedelta(seconds=INTERVAL)
+
+                sleep_cnt = interval - elapsed
+
+                time.sleep(sleep_cnt.total_seconds())
             except:
                 print "Sleep failure ..."
                 traceback.print_exc()
