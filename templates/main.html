@@ -1,26 +1,20 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div id="camera-image">
-    <h1>Pomona Watcher &mdash; <a href="https://www.youtube.com/channel/UCnXsE80xNi4UAJVV4kf2FQQ">YouTube</a></h1>
-    <img src="{{ url_for('static', filename='captures/') }}{{current}}" alt="Pomona!" />
-    <br/>
-    <br/>
-    <a href="{{ url_for('static', filename='captures/animated.gif') }}"><h2>yesterday.gif</h2></a>
+<h1><a href="/">Pomona Watcher</a> &mdash; <a href="https://www.youtube.com/channel/UCnXsE80xNi4UAJVV4kf2FQQ">YouTube</a></h1>
+  <div class="current">
+    <a href="{{ url_for('static', filename='captures/') }}{{current}}">
+      <img src="{{ url_for('static', filename='captures/') }}{{current}}" alt="Pomona!" />
+    </a>
   </div>
-  <div class="prev-captures">
-    <h2>Previous Images</h2>
-    {% for file in images %}
-      <a href="{{ url_for('static', filename='captures/') }}{{file}}">{{file}}</a><br/>
-    {% else %}
-      <p>No other captures.</p>
-    {% endfor %}
-  </div>
-  <div class="prev-captures">
-    <h2>Previous Videos</h2>
-    {% for file in videos %}
-      <a href="{{ url_for('static', filename='videos/') }}{{file}}">{{file}}</a><br/>
-    {% else %}
-      <p>No other captures.</p>
-    {% endfor %}
+  <br/>
+  <div class="previous">
+    <div class="previous__subcategory">
+        <h2>Previous Images</h2>
+        {% for file in images %}
+          <a href="{{ url_for('static', filename='captures/') }}{{file}}">{{file}}</a><br/>
+        {% else %}
+          <p>No other captures.</p>
+        {% endfor %}
+    </div>
   </div>
 {% endblock %}

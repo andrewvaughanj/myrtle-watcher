@@ -8,5 +8,16 @@
 <div class=page>
   {% block body %}{% endblock %}
 </div>
+<script type="text/javascript">
+        document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft') {
+                        window.location.href = '/next?back=1&capture={{capture_name}}';
+                } else if (event.key === 'ArrowRight') {
+                        window.location.href = '/next?back=0&capture={{capture_name}}';
+                } else if (event.key === 'r') {
+                        window.location.href = '/';
+                }
+        });
+</script>
 </body>
 </html>
